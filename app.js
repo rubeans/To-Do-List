@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const _ = require("lodash");
 const mongoose = require("mongoose");
 
@@ -136,6 +135,13 @@ app.get("/:customListParam", (req, res) => {
     });
 });
 
+
+let port = process.env.PORT;
+
+if (port == null || port == "") {
+  port = 3000;
+};
+
 app.listen(port, () => {
-    console.log(`server rodando em http://www.localhost:${port}`);
+    console.log("Server has started successfully...");
 });
