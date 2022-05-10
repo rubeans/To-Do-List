@@ -1,0 +1,29 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+  <h1>
+    <%= listTitle %>
+  </h1>
+</div>
+
+
+<div class="box">
+  <% newItems.forEach((item) =>{ %>
+  <form action="/delete" method="post">
+    <div class="item">
+      <input type="checkbox" onchange="this.form.submit()" name="checkboxItem" value="<%= item._id %>">
+      <!-- quando apertar em qualquer checkbox ira submeter os dados sem precisar de um botao submit -->
+      <p><%= item.name %></p>
+    </div>
+    <input type="hidden" name="listName" value="<%= listTitle %>">
+  </form>
+  <% }); %>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="nextToDoItem" placeholder="Novo Item" autocomplete="off" autofocus required>
+    <button type="submit" name="subBtnList" value="<%= listTitle %>">+</button>
+  </form>
+
+</div>
+
+<%- include("footer") -%>
